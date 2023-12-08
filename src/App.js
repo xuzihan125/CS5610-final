@@ -29,7 +29,7 @@ function App() {
               <Route path="/bookmarks/:userId" element={<Bookmarks />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/search/:searchTerm" element={<Search />} />
-              <Route path="/details/:recipeId" element={<Recipe />} />
+              <Route path="/recipes/:recipeId" element={<Recipe />} />
             </Routes>
           </div>
         </div>
