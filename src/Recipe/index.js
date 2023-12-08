@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as client from "./client";
 import "./index.css";
-import RecipeTitle from "./RecipeTitle";
+import RecipeTitle from "./RecipeTitle.js";
+import RecipeIngredients from "./RecipeIngredients.js";
 
 function Recipe() {
     const [recipe, setRecipe] = useState({
@@ -27,37 +28,26 @@ function Recipe() {
 
     useEffect(() => {
         selectRecipe(recipeId);
-    }, [])
+    }, [recipeId])
 
     return (
-        <div className="m-3 m-sm-4">
+        <div className="m-3 m-md-4">
             <div className="container-fluid">
-                <div className="d-none d-sm-block">
+                <div className="d-none d-md-block">
                     <div className="row">
                         <div className="col-8">
                             <RecipeTitle recipe={recipe} />
-                            <h3>Ingredients:</h3>
-                            <ul>
-                                {recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
-                                    <li key={index}>
-                                        {ingredient.ingredient.name}
-                                        <br></br>
-                                        {ingredient.unit}
-                                    </li>
-                                ))}
-                            </ul>
-
-
+                            <RecipeIngredients recipe={recipe} />
                         </div>
                         <div className="col-4">
                             {recipe.image && <img src={recipe.image} alt={recipe.title} className="wd-recipe-image float-end" />}
                         </div>
                     </div>
                 </div>
-                <div className="d-block d-sm-none">
+                <div className="d-block d-md-none">
                     {recipe.image && <img src={recipe.image} alt={recipe.title} className="wd-recipe-image" />}
-                    <h1>{recipe.title}</h1>
-                    {recipe.author && <h3> By {recipe.author} </h3>}
+                    <RecipeTitle recipe={recipe} />
+                    <RecipeIngredients recipe={recipe} />
                 </div>
 
 
