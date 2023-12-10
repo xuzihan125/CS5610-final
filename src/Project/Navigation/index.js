@@ -20,7 +20,7 @@ function Navigation() {
                             </Link>
                         </li>
                         <li className="nav-item" key={1}>
-                            <Link className={`nav-link ${pathname.includes("search") && "active fw-bold"}`} to={"/search"}>
+                            <Link className={`nav-link ${pathname.includes("search") && !pathname.includes("users") && "active fw-bold"}`} to={"/search"}>
                                 Search Recipes
                             </Link>
                         </li>
@@ -40,14 +40,14 @@ function Navigation() {
                             </Link>
                         </li>
                         <li className="nav-item" key={5}>
-                            <Link className={`nav-link ${pathname.includes("userSearch") && "active fw-bold"}`} to={"/userSearch"}>
+                            <Link className={`nav-link ${pathname.includes("users") && pathname.includes("search") && "active fw-bold"}`} to={"/users/search"}>
                                 Search User
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }
