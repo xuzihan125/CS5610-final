@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import * as client from "./client.js";
 
 function UserSearch() {
@@ -9,6 +9,7 @@ function UserSearch() {
     const [searchTerm, setSearchTerm] = useState(urlSearchTerm || "test");
     const [results, setResults] = useState(null);
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
 
     const fetchUsers = async (urlSearchTerm) => {
         const results = await client.findUsersBySearchTerm(urlSearchTerm);
@@ -16,11 +17,19 @@ function UserSearch() {
         setSearchTerm(urlSearchTerm);
     }
 
+    const fetchUser = async () => {
+        const currentUser = await client.account();
+        setUser(currentUser);
+    }
+
     useEffect(() => {
         if (urlSearchTerm) {
             fetchUsers(urlSearchTerm);
         }
-    }, [urlSearchTerm])
+        if (!user) {
+            fetchUser();
+        }
+    }, [urlSearchTerm, user])
 
     return (
         <div>
@@ -36,16 +45,19 @@ function UserSearch() {
 
             <div>
                 <h2>Search Results for "{searchTerm}"</h2>
-                <ul className="list-group">
-                    {results && results.map((user, index) => (
-                        <li key={index}
-                            className="list-group-item">
-                            <Link to={`/users/${user._id}`}>
-                                <h3>{user.username}</h3>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                {!user && (<div className="alert alert-danger my-1">Please <Link to={"/users/signin"}>click here</Link> to sign in first.</div>)}
+                {user && (
+                    <ul className="list-group">
+                        {results && results.map((user, index) => (
+                            <li key={index}
+                                className="list-group-item">
+                                <Link to={`/users/${user._id}`}>
+                                    <h4>{user.username}</h4>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     )
