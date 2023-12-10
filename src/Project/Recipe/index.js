@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as client from "./client";
+import * as client from "./client.js";
 import "./index.css";
 import RecipeTitle from "./RecipeTitle.js";
 import RecipeIngredients from "./RecipeIngredients.js";
