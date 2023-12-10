@@ -44,6 +44,7 @@ function Account() {
     return (
         <div className="container-fluid">
             <h1>Account</h1>
+            {!user && <div className="alert alert-danger my-1">Please <Link to={"/users/signin"}>click here</Link> to sign in.</div>}
             {user && (
                 <div>
                     <h3>Welcome, {user.username}</h3>

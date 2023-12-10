@@ -19,22 +19,24 @@ function Project() {
 
     return (
         <Provider store={store}>
-            <div className='d-flex flex-column'>
-                <Navigation />
-                <div className='flex-grow-1' style={{ paddingTop: '56px' }}>
-                    <Routes>
-                        <Route path="/" element={<Navigate to="home" />} />
-                        <Route path="home" element={<Home />} />
-                        <Route path="search" element={<Search />} />
-                        <Route path="users/signin" element={<Signin />} />
-                        <Route path="users/signup" element={<Signup />} />
-                        <Route path="bookmarks/:userId" element={<Bookmarks />} />
-                        <Route path="users/account" element={<Account />} />
-                        <Route path="search/:searchTerm" element={<Search />} />
-                        <Route path="recipes/:recipeId" element={<Recipe />} />
-                    </Routes>
+            <CurrentUser>
+                <div className='d-flex flex-column'>
+                    <Navigation />
+                    <div className='flex-grow-1' style={{ paddingTop: '56px' }}>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="home" />} />
+                            <Route path="home" element={<Home />} />
+                            <Route path="search" element={<Search />} />
+                            <Route path="users/signin" element={<Signin />} />
+                            <Route path="users/signup" element={<Signup />} />
+                            <Route path="bookmarks/:userId" element={<Bookmarks />} />
+                            <Route path="users/account" element={<Account />} />
+                            <Route path="search/:searchTerm" element={<Search />} />
+                            <Route path="recipes/:recipeId" element={<Recipe />} />
+                        </Routes>
+                    </div>
                 </div>
-            </div>
+            </CurrentUser>
         </Provider>
 
     )

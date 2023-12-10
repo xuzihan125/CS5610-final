@@ -4,6 +4,7 @@ import * as client from './client';
 
 function Signup() {
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
     const [newUser, setNewUser] = useState({
         username: "",
         password: "",
@@ -21,6 +22,8 @@ function Signup() {
     const signup = async () => {
         try {
             await client.signup(newUser);
+            setError("");
+            setSuccess("User created successfully.");
             navigate("/users/account")
         } catch (error) {
             setError(error.response.data.message);
@@ -31,6 +34,7 @@ function Signup() {
         <div className='container-fluid'>
             <h1>Sign Up</h1>
             {error && <div className='alert alert-danger my-1'>{error}</div>}
+            {success && <div className='alert alert-success my-1'>{success}</div>}
             <div className='m-3'>
                 <div className="mb-3">
                     <label htmlFor="userUsername" className="form-label">Username: </label>
