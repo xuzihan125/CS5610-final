@@ -23,6 +23,7 @@ function Account() {
     const updateUser = async () => {
         try {
             const status = await client.updateUser(user._id, user);
+            setError("");
         } catch (error) {
             setError(error.response.data.message);
         }
