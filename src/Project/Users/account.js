@@ -7,6 +7,7 @@ import { setCurrentUser } from "./reducer";
 function Account() {
     const [user, setUser] = useState(null);
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function Account() {
     const updateUser = async () => {
         try {
             const status = await client.updateUser(user._id, user);
+            setSuccess("User information updated successfully.")
             setError("");
         } catch (error) {
             setError(error.response.data.message);
@@ -46,6 +48,7 @@ function Account() {
                 <div>
                     <h3>Welcome, {user.username}</h3>
                     {error && <div className="alert alert-danger my-1">{error}</div>}
+                    {success && <div className="alert alert-success my-1">{success}</div>}
                     <div className="m-3">
                         <div className="mb-3">
                             <label htmlFor="userUsername" className="form-label">Username: </label>
@@ -55,6 +58,15 @@ function Account() {
                                 value={user.username}
                                 id="userUsername"
                                 onChange={(e) => setUser({ ...user, username: e.target.value })} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="userPassword" className="form-label">Password: </label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                value={user.password}
+                                id="userPassword"
+                                onChange={(e) => setUser({ ...user, password: e.target.value })} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="userEmail" className="form-label">Email: </label>
