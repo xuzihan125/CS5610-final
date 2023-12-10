@@ -57,6 +57,11 @@ export const deleteUser = async (userId) => {
     return response.data;
 }
 
+export const findUsersBySearchTerm = async (searchTerm) => {
+    const response = await request.get(`${USERS_API}/search/${searchTerm}`);
+    return response.data;
+}
+
 
 
 

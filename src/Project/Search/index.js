@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import * as client from "../Client";
 
 function Search() {
@@ -28,11 +27,10 @@ function Search() {
                 <input className="form-control me-2" type="text" placeholder="Recipes, ingredients, ..." aria-label="Search" value={searchTerm} onChange={(event) => {
                     setSearchTerm(event.target.value);
                 }} />
-                <button className="btn btn-outline-success" onClick={() => navigate(`/search/${searchTerm}`)}>Search</button>
+                <button className="btn btn-outline-success" onClick={() => navigate(`/search/${searchTerm}`)}>Search Recipes</button>
             </div>
             <div>
                 <h2>Search Results for "{searchTerm}"</h2>
-                {/* <pre>{JSON.stringify(results, null, 2)}</pre> */}
                 <ul className="list-group">
                     {results && results.map((recipe, index) => (
                         <li key={index} className="list-group-item">

@@ -6,6 +6,7 @@ import Bookmarks from './Bookmarks';
 import Recipe from './Recipe';
 import Account from './Users/account';
 import Navigation from './Navigation';
+import UserSearch from './Users/search';
 import { Routes, Route } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -33,6 +34,8 @@ function Project() {
                             <Route path="users/account" element={<Account />} />
                             <Route path="search/:searchTerm" element={<Search />} />
                             <Route path="recipes/:recipeId" element={<Recipe />} />
+                            <Route path="users/search" element={<UserSearch />} />
+                            <Route path="users/search/:searchTerm" element={<UserSearch />} />
                         </Routes>
                     </div>
                 </div>
