@@ -21,26 +21,41 @@ function SignIn() {
         }
     };
     return (
-        <div>
-            <h2>Sign In</h2>
-            {error && <div className="alert alert-danger">Incorrect username or password</div>}
-            <input
-                type="text"
-                className="form-control"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={signIn} className="btn btn-primary">
-                Sign In
-            </button>
+        <div className="container-fluid">
+            <h1>Sign In</h1>
+            {error && <div className="alert alert-danger my-1">Incorrect username or password</div>}
+            <div className="m-3">
+                <div>
+                    <label htmlFor="username" className="form-label">
+                        Username:
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="Username"
+                        value={username}
+                        id="username"
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password" className="form-label">
+                        Password:
+                    </label>
+                    <input
+                        type="password"
+                        className="form-control mb-3"
+                        placeholder="Password"
+                        value={password}
+                        id="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+
+                <button onClick={signIn} className="btn btn-primary">
+                    Sign In
+                </button>
+            </div>
         </div>
     );
 }

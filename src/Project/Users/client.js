@@ -15,7 +15,6 @@ export const signin = async (credentials) => {
         console.error("Error during sign in: ", error);
         throw error;
     }
-
 }
 
 export const signout = async () => {
@@ -38,8 +37,18 @@ export const findUserById = async (userId) => {
     return response.data;
 }
 
+export const findUserByEmail = async (email) => {
+    const response = await request.get(`${USERS_API}/email/${email}`);
+    return response.data;
+}
+
 export const updateUser = async (userId, user) => {
     const response = await request.put(`${USERS_API}/${userId}`, user);
+    return response.data;
+}
+
+export const signup = async (user) => {
+    const response = await request.post(`${USERS_API}/signup`, user);
     return response.data;
 }
 
