@@ -52,6 +52,11 @@ export const signup = async (user) => {
     return response.data;
 }
 
+export const createUser = async (user) => {
+    const response = await request.post(`${USERS_API}/create`, user);
+    return response.data;
+}
+
 export const deleteUser = async (userId) => {
     const response = await request.delete(`${USERS_API}/${userId}`);
     return response.data;

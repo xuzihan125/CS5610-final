@@ -51,6 +51,17 @@ function UserList() {
         }
     }
 
+    const createUser = async () => {
+        try {
+            const status = await client.createUser(user);
+            setSuccess("User created successfully.")
+            setError("");
+        } catch (error) {
+            setError(error.response.data.message);
+
+        }
+    }
+
     useEffect(() => {
         fetchCurrentUser();
         fetchUsers();
@@ -215,7 +226,8 @@ function UserList() {
                                 <option value="ADMIN">Admin</option>
                             </select>
                         </div>
-                        <button className="btn btn-primary mb-3" onClick={updateUser}>Update</button>
+                        <button className="btn btn-primary mb-3 me-3" onClick={updateUser}>Update</button>
+                        <button className="btn btn-success mb-3" onClick={createUser}>Create</button>
                     </div>
 
                     <h2>All Users</h2>
