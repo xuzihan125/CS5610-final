@@ -5,6 +5,7 @@ import Signin from './Users/signin';
 import Bookmarks from './Bookmarks';
 import Recipe from './Recipe';
 import Account from './Users/account';
+import UserDetails from './Users/details';
 import Navigation from './Navigation';
 import UserSearch from './Users/search';
 import { Routes, Route } from 'react-router';
@@ -36,6 +37,7 @@ function Project() {
                             <Route path="recipes/:recipeId" element={<Recipe />} />
                             <Route path="users/search" element={<UserSearch />} />
                             <Route path="users/search/:searchTerm" element={<UserSearch />} />
+                            <Route path='users/:userId' element={<UserDetails />} />
                         </Routes>
                     </div>
                 </div>
