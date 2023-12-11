@@ -169,7 +169,7 @@ function Account() {
                         <button onClick={updateUser} className="btn btn-primary me-3">
                             Update
                         </button>
-                        <button onClick={signout} className="btn btn-danger">
+                        <button onClick={signout} className="btn btn-danger me-3">
                             Sign Out
                         </button>
                         {user.role === "ADMIN" && (

@@ -30,7 +30,7 @@ function UserList() {
                         {users.map((user) => (
                             <Link
                                 key={user._id}
-                                to={`/project/users/${user._id}`}
+                                to={`/users/${user._id}`}
                                 className="list-group-item"
                             >
                                 {user.username}
