@@ -9,7 +9,7 @@ const USERS_API = `${API_BASE}/users`;
 
 export const signin = async (credentials) => {
     try {
-        const response = await request.post(`http://localhost:4000/users/signin`, credentials);
+        const response = await request.post(`${USERS_API}/signin`, credentials);
         return response.data;
     } catch (error) {
         console.error("Error during sign in: ", error);

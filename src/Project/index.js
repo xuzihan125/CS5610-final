@@ -2,6 +2,7 @@ import Home from './Home';
 import Search from './Search';
 import Signup from './Users/signup';
 import Signin from './Users/signin';
+import CurrentUser from './Users/currentUser';
 import Bookmarks from './Bookmarks';
 import Recipe from './Recipe';
 import Account from './Users/account';
@@ -13,7 +14,6 @@ import { Routes, Route } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import CurrentUser from './Users/currentUser';
 import { useState } from 'react';
 
 function Project() {

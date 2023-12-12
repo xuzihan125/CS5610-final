@@ -7,11 +7,11 @@ import * as followsClient from '../Follows/client.js';
 function UserDetail() {
 
     const [user, setUser] = useState(null);
-    const [currentUser, setCurrentUser] = useState(null);
+    // const [currentUser, setCurrentUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
     const { userId } = useParams();
-    // const currentUser = useSelector((state) => state.currentUser);
+    const { currentUser } = useSelector((state) => state.userReducer);
 
     const navigate = useNavigate();
 
@@ -19,10 +19,10 @@ function UserDetail() {
         const status = await client.updateUser(userId, user);
     }
 
-    const fetchCurrentUser = async () => {
-        const cu = await client.account();
-        setCurrentUser(cu);
-    }
+    // const fetchCurrentUser = async () => {
+    //     const cu = await client.account();
+    //     setCurrentUser(cu);
+    // }
 
     const deleteUser = async () => {
         const status = await client.deleteUser(userId);
@@ -68,7 +68,7 @@ function UserDetail() {
 
     useEffect(() => {
         fetchUser();
-        fetchCurrentUser();
+        // fetchCurrentUser();
         fetchFollowers();
         fetchFollowing();
     }, [userId, following])
@@ -131,10 +131,10 @@ function UserDetail() {
                             <Link
                                 key={index}
                                 className="list-group-item"
-                                to={`/project/users/${follows.followed._id}`}
+                                to={`/project/users/${follows.following._id}`}
                             >
-                                {follows.followed.username}
-                                {follows.followed._id}
+                                {follows.following.username}
+                                {follows.following._id}
                             </Link>
                         ))}
                     </div>
