@@ -6,8 +6,15 @@ export const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
 export const SEARCH_RESULT_NUMBER = 1;
 
 // Search recipes from the API and return the list of spoonacularIds
-export const searchRecipesFromAPI = async (searchTerm) => {
-    const response = await axios.get(`${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`);
+export const searchRecipesFromAPI = async (searchTerm, isVegetarian, isGlutenFree) => {
+    const link = `${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`;
+    if (isVegetarian) {
+        link += "&diet=vegetarian";
+    }
+    if (isGlutenFree) {
+        link += "&intolerances=gluten";
+    }
+    const response = await axios.get(link);
     const ids = []
     for (const recipe of response.results) {
         ids.push(recipe.id);
@@ -105,6 +112,13 @@ export const findRecipeBySearchTerm = async (searchTerm) => {
     const response = await axios.get(`${BASE_API}/recipes/search/${searchTerm}`);
     return response.data;
 }
+
+export const findRecipeBySpooonacularId = async (spoonacularId) => {
+    const response = await axios.get(`${BASE_API}/recipes/spoonacular/${spoonacularId}`);
+    return response.data;
+}
+
+
 
 
 
