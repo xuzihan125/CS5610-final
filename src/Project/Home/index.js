@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import RecipeCard from '../Recipe/RecipeCard';
+import { useSelector } from 'react-redux';
 
 function Home() {
     const recipe = { title: "test recipe", image: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2022/07/what_to_know_apples_green_red_1296x728_header-1024x575.jpg", summary: "test summary test summary test summary test summary test summary test summary test summarytest summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary" }
+
+    const { currentUser } = useSelector((state) => state.userReducer);
+
     return (
         <div className="container-fluid">
             <div className='m-3 mx-5'>
