@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
-import * as client from "../Client";
+import * as recipeClient from "../Recipe/client.js";
 
 function Search() {
     const urlSearchTerm = useParams().searchTerm;
@@ -10,7 +10,7 @@ function Search() {
     const navigate = useNavigate();
 
     const fetchRecipes = async (urlSearchTerm) => {
-        const results = await client.findRecipes(urlSearchTerm);
+        const results = await recipeClient.searchRecipesFromAPI(urlSearchTerm);
         setResults(results);
         setSearchTerm(urlSearchTerm);
     }
