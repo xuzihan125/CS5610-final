@@ -59,8 +59,6 @@ function UserDetail() {
         try {
             const u = await client.findUserById(userId);
             setUser(u);
-            console.log(typeof u._id, u._id);
-            console.log(typeof currentUser._id, currentUser._id);
         } catch (error) {
             console.error(error);
         }

@@ -1,9 +1,9 @@
-function RecipeIngredients({ recipe }) {
+function RecipeIngredients({ ingredients }) {
     return (
         <div>
             <h3>Ingredients:</h3>
             <ul>
-                {recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
+                {ingredients && ingredients.map((ingredient, index) => (
                     <li key={index}>
                         {ingredient.ingredient.name}
                         <br></br>

@@ -1,9 +1,9 @@
-function RecipeTitle({ recipe }) {
+function RecipeTitle({ title, author, cuisine }) {
     return (
         <div>
-            <h1>{recipe.title}</h1>
-            {recipe.author && <h2> By {recipe.author} </h2>}
-            {recipe.cuisine && <h3> Cuisine: {recipe.cuisine} </h3>}
+            <h1>{title}</h1>
+            {author && <h2> By {author.username} </h2>}
+            {cuisine && <h3> Cuisine: {cuisine} </h3>}
         </div>
     )
 }

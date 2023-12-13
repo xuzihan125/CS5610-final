@@ -15,6 +15,8 @@ function Account() {
     const fetchUser = async () => {
         try {
             const user = await client.account();
+            console.log(user)
+            console.log(typeof user)
             setUser(user);
         } catch (err) {
             navigate("/signin");
