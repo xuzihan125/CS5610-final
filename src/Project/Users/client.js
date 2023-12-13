@@ -67,6 +67,13 @@ export const findUsersBySearchTerm = async (searchTerm) => {
     return response.data;
 }
 
+export const findUserByUsername = async (username) => {
+    const response = await request.get(`${USERS_API}/username/${username}`);
+    return response.data;
+}
+
+
+
 
 
 

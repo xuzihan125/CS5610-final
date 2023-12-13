@@ -32,7 +32,7 @@ export const findNutrientById = async (nutrientId) => {
     return response.data
 }
 
-export const findNutrientsByName = async (name) => {
+export const findNutrientByName = async (name) => {
     const response = await client.get(`/name/${name}`)
     return response.data
 }

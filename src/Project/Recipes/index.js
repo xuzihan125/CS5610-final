@@ -6,14 +6,7 @@ import RecipeTitle from "./RecipeTitle.js";
 import RecipeIngredients from "./RecipeIngredients.js";
 
 function Recipe() {
-    const [recipe, setRecipe] = useState({
-        title: "",
-        image: "",
-        author: "",
-        cuisine: "Other",
-        ingredients: [],
-        instructions: []
-    })
+    const [recipe, setRecipe] = useState(null)
 
     const { recipeId } = useParams();
 
@@ -22,6 +15,7 @@ function Recipe() {
             const r = await client.findRecipeById(recipeId);
             setRecipe(r);
         } catch (err) {
+            console.log("Error in Recipe.js: ")
             console.log(err);
         }
     };

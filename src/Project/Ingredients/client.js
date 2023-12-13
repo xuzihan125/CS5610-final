@@ -27,7 +27,7 @@ export const findIngredientById = async (ingredientId) => {
     return response.data
 }
 
-export const findIngredientsByName = async (name) => {
+export const findIngredientByName = async (name) => {
     const response = await client.get(`/name/${name}`)
     return response.data
 }
@@ -37,7 +37,7 @@ export const findAllIngredients = async () => {
     return response.data
 }
 
-export const findIngerdientsBySearchTerm = async (searchTerm) => {
+export const findIngredientsBySearchTerm = async (searchTerm) => {
     const response = await client.get(`/search/${searchTerm}`)
     return response.data
 }

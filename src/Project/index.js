@@ -4,7 +4,7 @@ import Signup from './Users/signup';
 import Signin from './Users/signin';
 import CurrentUser from './Users/currentUser';
 import Likes from './Likes';
-import Recipe from './Recipe';
+import Recipe from './Recipes';
 import Account from './Users/account';
 import UserDetails from './Users/details';
 import Navigation from './Navigation';

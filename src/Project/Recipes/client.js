@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as ingredientsClient from '../Ingredients/client';
 import * as nutrientsClient from '../Nutrients/client';
-
+import * as usersClient from '../Users/client';
 
 
 export const BASE_API = process.env.REACT_APP_BASE_API_URL || "http://localhost:3000";
@@ -19,61 +19,80 @@ export const searchRecipesFromAPI = async (searchTerm, isVegetarian, isGlutenFre
     if (isGlutenFree) {
         link += "&intolerances=gluten";
     }
+    console.log(link);
     const response = await axios.get(link);
     const ids = []
-    for (const recipe of response.results) {
-        ids.push(recipe.id);
+    if (response) {
+        for (const recipe of response.data.results) {
+            ids.push(recipe.id);
+        }
     }
+    console.log(ids)
     return ids;
 }
 
 // Grab details of one recipe from the API and return the recipe JSON object
 export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
-
-    const response = await axios.get(`${SPOONACULAR_RECIPE_DETAIL_API}/${spoonacularId}/information?apiKey=${API_KEY}&includeNutrition=true`);
+    const link = `${SPOONACULAR_RECIPE_DETAIL_API}/${spoonacularId}/information?apiKey=${API_KEY}&includeNutrition=true`;
+    console.log(link)
+    const response = await axios.get(link);
 
     // Prepare the ingredients information
     const ingredients = []
-    for (const ing of response.extendedIngredients) {
-        const ingredient = {
-            name: ing.nameClean || ing.name,
+    for (const ing of response.data.extendedIngredients) {
+        const ingredientElement = {
+            ingredient: ing.nameClean || ing.name,
             amount: ing.amount || ing.measures.us.amount,
             unit: ing.unit || ing.measures.us.unitShort
         }
-        ingredients.push(ingredient);
+        console.log("Ingredient: ")
+        console.log(ingredientElement)
+        ingredients.push(ingredientElement);
     }
+    console.log("Ingredients: ");
+    console.log(ingredients)
 
     // Prepare the nutrients information
     const nutrients = []
-    for (const nut of response.nutrition.nutrients) {
-        const nutrient = {
-            name: nut.name,
+    for (const nut of response.data.nutrition.nutrients) {
+        const nutrientElement = {
+            nutrient: nut.name,
             amount: nut.amount,
             unit: nut.unit
         }
-        nutrients.push(nutrient);
+        nutrients.push(nutrientElement);
     }
+    console.log("Nutrients: ");
+    console.log(nutrients)
 
     // Prepare the steps
     const steps = []
-    for (const st of response.analyzedInstructions[0].steps) {
+    for (const st of response.data.analyzedInstructions[0].steps) {
+        console.log(st)
         const step = {
-            number: st.number,
-            step: st.step
+            step: st.number,
+            instruction: st.step
         }
         steps.push(step);
     }
+    console.log("steps: ")
+    console.log(steps)
+
+    const officialAuthor = await usersClient.findUserByUsername("Spoonacular");
+    const officialAuthorId = officialAuthor._id;
 
     const recipe = {
-        title: response.title,
-        spoonacularId: response.id,
-        image: response.image,
-        author: response.sourceName || "Spoonacular",
-        cuisine: response.cuisines[0] || "Other",
+        title: response.data.title,
+        spoonacularId: response.data.id,
+        image: response.data.image,
+        author: officialAuthorId,
+        cuisine: response.data.cuisines[0] || "Other",
         ingredients: ingredients,
         nutrients: nutrients,
-        instructions: steps || "No instructions available"
+        instructions: steps || [{ number: 1, step: "No instructions available" }]
     }
+    console.log("Recipe: ")
+    console.log(recipe)
 
     return recipe
 }
@@ -113,12 +132,12 @@ export const findRecipesByAuthorId = async (authorId) => {
     return response.data;
 }
 
-export const findRecipeBySearchTerm = async (searchTerm) => {
+export const findRecipesBySearchTerm = async (searchTerm) => {
     const response = await axios.get(`${BASE_API}/recipes/search/${searchTerm}`);
     return response.data;
 }
 
-export const findRecipeBySpooonacularId = async (spoonacularId) => {
+export const findRecipeBySpoonacularId = async (spoonacularId) => {
     const response = await axios.get(`${BASE_API}/recipes/spoonacular/${spoonacularId}`);
     return response.data;
 }

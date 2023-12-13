@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import RecipeCard from '../Recipe/RecipeCard';
+import RecipeCard from '../Recipes/RecipeCard';
 import { useSelector } from 'react-redux';
 
 function Home() {
