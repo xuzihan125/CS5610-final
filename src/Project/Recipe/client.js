@@ -1,4 +1,7 @@
 import axios from 'axios';
+
+
+
 export const BASE_API = process.env.REACT_APP_BASE_API_URL || "http://localhost:3000";
 export const SPOONACULAR_SEARCH_API = "https://api.spoonacular.com/recipes/complexSearch";
 export const SPOONACULAR_RECIPE_DETAIL_API = "https://api.spoonacular.com/recipes";
@@ -25,7 +28,7 @@ export const searchRecipesFromAPI = async (searchTerm, isVegetarian, isGlutenFre
 // Grab details of one recipe from the API and return the recipe JSON object
 export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
 
-    const response = await axios.get(`${SPOONACULAR_RECIPE_DETAIL_API}/${id}/information?apiKey=${API_KEY}&includeNutrition=true`);
+    const response = await axios.get(`${SPOONACULAR_RECIPE_DETAIL_API}/${spoonacularId}/information?apiKey=${API_KEY}&includeNutrition=true`);
 
     // Prepare the ingredients information
     const ingredients = []

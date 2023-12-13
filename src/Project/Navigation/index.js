@@ -42,14 +42,19 @@ function Navigation() {
                         )}
                         {currentUser && (
                             <>
-                                <li className="nav-item" key={5}>
+                                <li className="nav-item" key={4}>
                                     <Link className={`nav-link ${pathname.includes("users") && pathname.includes("search") && "active fw-bold"}`} to={"/users/search"}>
                                         Search User
                                     </Link>
                                 </li>
-                                <li className="nav-item" key={4}>
+                                <li className="nav-item" key={5}>
                                     <Link className={`nav-link ${pathname.includes("account") && "active fw-bold"}`} to={"/users/account"}>
                                         Account
+                                    </Link>
+                                </li>
+                                <li className="nav-item" key={6}>
+                                    <Link className={`nav-link ${pathname.includes("likes") && "active fw-bold"}`} to={"/likes"}>
+                                        Likes
                                     </Link>
                                 </li>
                             </>

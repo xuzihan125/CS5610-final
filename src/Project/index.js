@@ -3,7 +3,7 @@ import Search from './Search';
 import Signup from './Users/signup';
 import Signin from './Users/signin';
 import CurrentUser from './Users/currentUser';
-import Bookmarks from './Bookmarks';
+import Likes from './Likes';
 import Recipe from './Recipe';
 import Account from './Users/account';
 import UserDetails from './Users/details';
@@ -32,7 +32,8 @@ function Project() {
                             <Route path="search" element={<Search />} />
                             <Route path="users/signin" element={<Signin />} />
                             <Route path="users/signup" element={<Signup />} />
-                            <Route path="bookmarks/:userId" element={<Bookmarks />} />
+                            <Route path="likes/:userId" element={<Likes />} />
+                            <Route path="likes" element={<Likes />} />
                             <Route path="users/account" element={<Account />} />
                             <Route path="search/:searchTerm" element={<Search />} />
                             <Route path="recipes/:recipeId" element={<Recipe />} />
