@@ -12,8 +12,6 @@ function Signup() {
         lastName: "",
         email: "",
         isVegetarian: false,
-        isVegan: false,
-        isLactoseIntolerant: false,
         isGlutenIntolerant: false,
         role: "USER"
     });
@@ -129,34 +127,6 @@ function Signup() {
                     />
                     <label className="form-check-label" htmlFor="userIsVegetarian">
                         Vegetarian
-                    </label>
-                </div>
-                <div className="form-check mb-1">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value={newUser.isVegan}
-                        checked={newUser.isVegan}
-                        id="userIsVegan"
-                        onChange={(e) => {
-                            setNewUser({ ...newUser, isVegan: e.target.checked });
-                        }} />
-                    <label className="form-check-label" htmlFor="userIsVegan">
-                        Vegan
-                    </label>
-                </div>
-                <div className="form-check mb-1">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value={newUser.isLactoseIntolerant}
-                        checked={newUser.isLactoseIntolerant}
-                        id="userIsLactoseIntolerant"
-                        onChange={(e) => {
-                            setNewUser({ ...newUser, isLactoseIntolerant: e.target.checked });
-                        }} />
-                    <label className="form-check-label" htmlFor="userIsLactoseIntolerant">
-                        Lactose Intolerant
                     </label>
                 </div>
                 <div className="form-check mb-3">

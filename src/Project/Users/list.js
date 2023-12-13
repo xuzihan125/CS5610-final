@@ -13,8 +13,6 @@ function UserList() {
         email: "john.appleseed@apple.com",
         birthday: "1955-02-24",
         isVegetarian: false,
-        isVegan: false,
-        isLactoseIntolerant: false,
         isGlutenIntolerant: false,
     });
     const [error, setError] = useState("");
@@ -168,34 +166,6 @@ function UserList() {
                             />
                             <label className="form-check-label" htmlFor="userIsVegetarian">
                                 Vegetarian
-                            </label>
-                        </div>
-                        <div className="form-check mb-1">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value={user.isVegan}
-                                checked={user.isVegan}
-                                id="userIsVegan"
-                                onChange={(e) => {
-                                    setUser({ ...user, isVegan: e.target.checked });
-                                }} />
-                            <label className="form-check-label" htmlFor="userIsVegan">
-                                Vegan
-                            </label>
-                        </div>
-                        <div className="form-check mb-1">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value={user.isLactoseIntolerant}
-                                checked={user.isLactoseIntolerant}
-                                id="userIsLactoseIntolerant"
-                                onChange={(e) => {
-                                    setUser({ ...user, isLactoseIntolerant: e.target.checked });
-                                }} />
-                            <label className="form-check-label" htmlFor="userIsLactoseIntolerant">
-                                Lactose Intolerant
                             </label>
                         </div>
                         <div className="form-check mb-3">
