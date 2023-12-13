@@ -12,8 +12,8 @@ export const createIngredient = async (ingredient) => {
     return response.data
 }
 
-export const updateIngredient = async (ingredient) => {
-    const response = await client.put(`/${ingredient.id}`, ingredient)
+export const updateIngredient = async (ingredientId, ingredient) => {
+    const response = await client.put(`/${ingredientId}`, ingredient)
     return response.data
 }
 

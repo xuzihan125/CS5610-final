@@ -1,4 +1,6 @@
 import axios from 'axios';
+import * as ingredientsClient from '../Ingredients/client';
+import * as nutrientsClient from '../Nutrients/client';
 
 
 
