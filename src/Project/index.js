@@ -10,6 +10,7 @@ import UserDetails from './Users/details';
 import Navigation from './Navigation';
 import UserSearch from './Users/search';
 import UserList from './Users/list';
+import NewRecipe from './Recipes/NewRecipe';
 import { Routes, Route } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -41,6 +42,7 @@ function Project() {
                             <Route path="users/search/:searchTerm" element={<UserSearch />} />
                             <Route path='users/:userId' element={<UserDetails />} />
                             <Route path='users' element={<UserList />} />
+                            <Route path='recipes/new' element={<NewRecipe />} />
                         </Routes>
                     </div>
                 </div>

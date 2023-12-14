@@ -45,12 +45,8 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
             quantity: ing.amount || ing.measures.us.amount,
             unit: ing.unit || ing.measures.us.unitShort
         }
-        console.log("Ingredient: ")
-        console.log(ingredientElement)
         ingredients.push(ingredientElement);
     }
-    console.log("Ingredients: ");
-    console.log(ingredients)
 
     // Prepare the nutrients information
     const nutrients = []
@@ -62,8 +58,6 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
         }
         nutrients.push(nutrientElement);
     }
-    console.log("Nutrients: ");
-    console.log(nutrients)
 
     // Prepare the steps
     const steps = []
