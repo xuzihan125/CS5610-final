@@ -57,6 +57,11 @@ function Navigation() {
                                         Likes
                                     </Link>
                                 </li>
+                                <li className="nav-item" key={7}>
+                                    <Link className={`nav-link ${pathname.includes("recipes") && pathname.includes("new") && "active fw-bold"}`} to={"/recipes/new"}>
+                                        Create Recipe
+                                    </Link>
+                                </li>
                             </>
                         )}
                     </ul>

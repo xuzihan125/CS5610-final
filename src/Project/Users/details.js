@@ -116,7 +116,6 @@ function UserDetail() {
                                 to={`/project/users/${follows.follower._id}`}
                             >
                                 {follows.follower.username}
-                                {follows.follower._id}
                             </Link>
                         ))}
                     </div>
@@ -129,7 +128,6 @@ function UserDetail() {
                                 to={`/project/users/${follows.following._id}`}
                             >
                                 {follows.following.username}
-                                {follows.following._id}
                             </Link>
                         ))}
                     </div>
