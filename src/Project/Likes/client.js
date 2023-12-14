@@ -13,7 +13,7 @@ export const userLikesRecipe = async (recipeId) => {
 
 export const userUnlikesRecipe = async (recipeId) => {
     const response = await client.delete(`/recipes/${recipeId}/likes`)
-    return response.data;
+    return response.data; 
 }
 
 export const findUsersLikingRecipe = async (recipeId) => {

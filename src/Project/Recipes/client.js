@@ -42,7 +42,7 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
     for (const ing of response.data.extendedIngredients) {
         const ingredientElement = {
             ingredient: ing.nameClean || ing.name,
-            amount: ing.amount || ing.measures.us.amount,
+            quantity: ing.amount || ing.measures.us.amount,
             unit: ing.unit || ing.measures.us.unitShort
         }
         console.log("Ingredient: ")

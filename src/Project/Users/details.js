@@ -7,7 +7,6 @@ import * as followsClient from '../Follows/client.js';
 function UserDetail() {
 
     const [user, setUser] = useState(null);
-    // const [currentUser, setCurrentUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
     const { userId } = useParams();
@@ -18,11 +17,6 @@ function UserDetail() {
     const updateUser = async () => {
         const status = await client.updateUser(userId, user);
     }
-
-    // const fetchCurrentUser = async () => {
-    //     const cu = await client.account();
-    //     setCurrentUser(cu);
-    // }
 
     const deleteUser = async () => {
         const status = await client.deleteUser(userId);
@@ -101,15 +95,18 @@ function UserDetail() {
                         />
                     </p>
                     <p>Last Name: {user.lastName}</p>
-                    <button onClick={updateUser} className="btn btn-primary">
-                        Update
-                    </button>
-                    <button
-                        onClick={() => deleteUser(user._id)}
-                        className="btn btn-danger"
-                    >
-                        Delete
-                    </button>
+                    {currentUser && currentUser.role === 'ADMIN' && (
+                        <>
+                            <button onClick={updateUser} className="btn btn-primary">
+                                Update
+                            </button>
+                            <button
+                                onClick={() => deleteUser(user._id)}
+                                className="btn btn-danger"
+                            >
+                                Delete
+                            </button></>
+                    )}
                     <h3>Followers</h3>
                     <div className="list-group">
                         {followers.map((follows, index) => (
