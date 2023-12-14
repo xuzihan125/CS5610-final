@@ -5,6 +5,7 @@ import "./index.css";
 import RecipeTitle from "./Components/RecipeTitle.js";
 import RecipeIngredients from "./Components/RecipeIngredients.js";
 import RecipeInstructions from "./Components/RecipeInstructions.js";
+import RecipeNutrients from "./Components/RecipeNutrients.js";
 import { useSelector } from "react-redux";
 import RecipeLikers from "./Components/RecipeLikers.js";
 
@@ -44,6 +45,9 @@ function Recipe() {
                                     <RecipeIngredients ingredients={recipe.ingredients} />
                                 </div>
                                 <div className="mb-5">
+                                    {currentUser.role !== "USER" && (<RecipeNutrients nutrients={recipe.nutrients} />)}
+                                </div>
+                                <div className="mb-5">
                                     <RecipeInstructions instructions={recipe.instructions} />
                                 </div>
                             </div>
@@ -66,6 +70,9 @@ function Recipe() {
                         </div>
                         <div className="mb-3">
                             <RecipeIngredients ingredients={recipe.ingredients} />
+                        </div>
+                        <div className="mb-3">
+                            <RecipeNutrients nutrients={recipe.nutrients} />
                         </div>
                         <div className="mb-3">
                             <RecipeInstructions instructions={recipe.instructions} />

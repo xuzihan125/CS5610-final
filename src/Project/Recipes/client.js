@@ -12,7 +12,7 @@ export const SEARCH_RESULT_NUMBER = 1;
 
 // Search recipes from the API and return the list of spoonacularIds
 export const searchRecipesFromAPI = async (searchTerm, isVegetarian, isGlutenFree) => {
-    const link = `${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`;
+    let link = `${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`;
     if (isVegetarian) {
         link += "&diet=vegetarian";
     }
@@ -69,7 +69,7 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
     //     }
     //     steps.push(step);
     // }
-    const formattedSteps = response.data.analyzedInstructions[0].steps.map(({ number, step }) => `${number}. ${step}`).join("<br />");
+    const formattedSteps = response.data.analyzedInstructions[0].steps.map(({ number, step }) => `${number}. ${step}`).join("\n");
 
     const officialAuthor = await usersClient.findUserByUsername("Spoonacular");
     const officialAuthorId = officialAuthor._id;

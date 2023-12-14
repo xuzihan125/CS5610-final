@@ -4,12 +4,12 @@ function RecipeInstructions({ instructions }) {
 
     const renderInstructions = (instructions) => {
         if (instructions) {
-            if (instructions.includes('<br />')) {
+            if (instructions.includes('\n')) {
                 return (
-                    <div>{instructions.split("<br />").map((line, index) => (
+                    <div>{instructions.split("\n").map((line, index) => (
                         <React.Fragment key={index}>
                             {line}
-                            {index !== instructions.split("<br />").length - 1 && <br />}
+                            {index !== instructions.split("\n").length - 1 && <br />}
                         </React.Fragment>
                     ))}</div>
                 )

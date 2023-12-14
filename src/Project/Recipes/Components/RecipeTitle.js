@@ -7,6 +7,7 @@ function RecipeTitle({ recipeId, title, author, cuisine }) {
 
     const { currentUser } = useSelector((state) => state.userReducer);
     const [likers, setLikers] = useState([]);
+    const [quota, setQuota] = useState(true);
 
     const likeRecipe = async () => {
         const status = await likesClient.userLikesRecipe(recipeId);
