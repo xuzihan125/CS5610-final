@@ -60,17 +60,16 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
     }
 
     // Prepare the steps
-    const steps = []
-    for (const st of response.data.analyzedInstructions[0].steps) {
-        console.log(st)
-        const step = {
-            step: st.number,
-            instruction: st.step
-        }
-        steps.push(step);
-    }
-    console.log("steps: ")
-    console.log(steps)
+    // const steps = []
+    // for (const st of response.data.analyzedInstructions[0].steps) {
+    //     console.log(st)
+    //     const step = {
+    //         step: st.number,
+    //         instruction: st.step
+    //     }
+    //     steps.push(step);
+    // }
+    const formattedSteps = response.data.analyzedInstructions[0].steps.map(({ number, step }) => `${number}. ${step}`).join("<br />");
 
     const officialAuthor = await usersClient.findUserByUsername("Spoonacular");
     const officialAuthorId = officialAuthor._id;
@@ -83,7 +82,7 @@ export const grabRecipeDetailsFromAPI = async (spoonacularId) => {
         cuisine: response.data.cuisines[0] || "Other",
         ingredients: ingredients,
         nutrients: nutrients,
-        instructions: steps || [{ number: 1, step: "No instructions available" }]
+        instructions: formattedSteps || "No instructions available"
     }
     console.log("Recipe: ")
     console.log(recipe)
