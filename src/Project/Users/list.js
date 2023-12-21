@@ -66,7 +66,7 @@ function UserList() {
     }, [])
 
     return (
-        <div>
+        <div className="container-fluid">
             {currentUser && currentUser.role === "ADMIN" && (
                 <>
                     <h1>Users</h1>
