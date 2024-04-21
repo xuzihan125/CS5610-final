@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import RecipeCard from '../../Recipes/RecipeCard.js';
 import {useEffect, useState} from "react";
 import * as recipesClient from "../../Recipes/client";
@@ -8,9 +7,7 @@ function RandomRecipes() {
     const fetchRecipe = async () => {
         const recipes = await recipesClient.findAllRecipes();
         setRecipe(recipes);
-        console.log(recipe)
     }
-    // const recipe = { title: "test recipe", image: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2022/07/what_to_know_apples_green_red_1296x728_header-1024x575.jpg", summary: "test summary test summary test summary test summary test summary test summary test summarytest summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary test summary" }
 
     useEffect(()=>{
         fetchRecipe();

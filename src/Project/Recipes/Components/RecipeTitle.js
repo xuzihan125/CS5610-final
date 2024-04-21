@@ -1,21 +1,19 @@
 import { useSelector } from "react-redux";
 import * as likesClient from "../../Likes/client.js";
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 function RecipeTitle({ recipeId, title, author, cuisine }) {
 
     const { currentUser } = useSelector((state) => state.userReducer);
     const [likers, setLikers] = useState([]);
-    const [quota, setQuota] = useState(true);
 
     const likeRecipe = async () => {
-        const status = await likesClient.userLikesRecipe(recipeId);
+        await likesClient.userLikesRecipe(recipeId);
         fetchLikers();
     }
 
     const unlikeRecipe = async () => {
-        const status = await likesClient.userUnlikesRecipe(recipeId);
+        await likesClient.userUnlikesRecipe(recipeId);
         fetchLikers();
     }
 

@@ -15,11 +15,8 @@ import { Routes, Route } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import { useState } from 'react';
 
 function Project() {
-
-    const [key, setKey] = useState('home');
 
     return (
         <Provider store={store}>

@@ -15,21 +15,21 @@ function UserDetail() {
     const navigate = useNavigate();
 
     const updateUser = async () => {
-        const status = await client.updateUser(userId, user);
+        await client.updateUser(userId, user);
     }
 
     const deleteUser = async () => {
-        const status = await client.deleteUser(userId);
+        await client.deleteUser(userId);
         navigate('/users');
     }
 
     const followUser = async () => {
-        const status = await followsClient.userFollowsUser(userId);
+        await followsClient.userFollowsUser(userId);
         fetchFollowing();
     }
 
     const unfollowUser = async () => {
-        const status = await followsClient.userUnfollowsUser(userId);
+        await followsClient.userUnfollowsUser(userId);
         fetchFollowing();
     }
 
@@ -113,7 +113,7 @@ function UserDetail() {
                             <Link
                                 key={index}
                                 className="list-group-item"
-                                to={`/project/users/${follows.follower._id}`}
+                                to={`/users/${follows.follower._id}`}
                             >
                                 {follows.follower.username}
                             </Link>
@@ -125,7 +125,7 @@ function UserDetail() {
                             <Link
                                 key={index}
                                 className="list-group-item"
-                                to={`/project/users/${follows.following._id}`}
+                                to={`/users/${follows.following._id}`}
                             >
                                 {follows.following.username}
                             </Link>

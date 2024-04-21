@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import * as likesClient from "../Likes/client.js";
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import RecipeCard from "../Recipes/RecipeCard";
 
@@ -12,12 +11,11 @@ function Likes() {
     const fetchRecipes = async () => {
         const r = await likesClient.findRecipesLikedByUser(currentUser._id);
         setRecipes(r);
-        console.log(r);
     }
 
     useEffect(() => {
         fetchRecipes();
-    }, [recipes])
+    }, [])
 
 
 

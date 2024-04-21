@@ -34,14 +34,14 @@ function UserList() {
     }
 
     const deleteUser = async (userId) => {
-        const status = await client.deleteUser(userId);
+        await client.deleteUser(userId);
         setSuccess("User deleted successfully.");
         fetchUsers();
     }
 
     const updateUser = async () => {
         try {
-            const status = await client.updateUser(user._id, user);
+            await client.updateUser(user._id, user);
             setSuccess("User information updated successfully.")
             setError("");
         } catch (error) {
@@ -51,7 +51,7 @@ function UserList() {
 
     const createUser = async () => {
         try {
-            const status = await client.createUser(user);
+            await client.createUser(user);
             setSuccess("User created successfully.")
             setError("");
         } catch (error) {

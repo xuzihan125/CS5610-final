@@ -171,7 +171,6 @@ function NewRecipe() {
             isVegetarian: isVegetarian,
             isGlutenFree: isGlutenFree
         }
-        console.log(recipe);
         const recipeInDB = await recipesClient.createRecipe(recipe);
         // Add recipe-ingredient, recipe-nutrient connections to DBs
         const recipeInDB_id = recipeInDB._id;

@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import RandomRecipes from './Components/RandomRecipes.js'
 import RecentUsers from './Components/RecentUsers.js'
 import { useSelector } from 'react-redux';
@@ -6,7 +5,6 @@ import { useSelector } from 'react-redux';
 function Home() {
 
     const { currentUser } = useSelector((state) => state.userReducer);
-    console.log(currentUser);
 
     return (
         <div className="container-fluid">

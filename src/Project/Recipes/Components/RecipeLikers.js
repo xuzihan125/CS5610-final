@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import * as likesClient from "../../Likes/client.js";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 

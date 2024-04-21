@@ -15,8 +15,6 @@ function Account() {
     const fetchUser = async () => {
         try {
             const user = await client.account();
-            // console.log(user)
-            // console.log(typeof user)
             setUser(user);
         } catch (err) {
             navigate("/signin");
@@ -25,7 +23,7 @@ function Account() {
 
     const updateUser = async () => {
         try {
-            const status = await client.updateUser(user._id, user);
+            await client.updateUser(user._id, user);
             setSuccess("User information updated successfully.")
             setError("");
         } catch (error) {
@@ -34,7 +32,7 @@ function Account() {
     }
 
     const signout = async () => {
-        const status = await client.signout();
+        await client.signout();
         dispatch(setCurrentUser(null));
         navigate("/home");
     }
