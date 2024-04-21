@@ -1,8 +1,19 @@
 import './RecipeCard.css';
 import * as helper from '../Helper';
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux";
+import * as recipesClient from "./client";
+import React from "react";
+import axios from "axios";
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, refetchData }) {
+    const { currentUser } = useSelector((state) => state.userReducer);
+
+    const deleteRecipe = async () =>{
+        const recipes = await recipesClient.deleteRecipe(recipe._id);
+        refetchData();
+    }
+
     return (
         <div className="card h-100">
             <img src={recipe.image} className="card-img-top" alt={recipe.title} />
@@ -11,9 +22,13 @@ function RecipeCard({ recipe }) {
                     {recipe.title}
                 </h5>
                 <p className='card-text'>
-                    {helper.trimString(recipe.summary, 100)}
+                    {helper.trimString(recipe.instructions, 100)}
                 </p>
-                <Link to={`/recipe/${recipe._id}`} className="btn btn-success">View Recipe</Link>
+                <div className="mb-3">
+                    <Link to={`/recipes/${recipe._id}`} className="btn btn-success">View Recipe</Link>
+                </div>
+                {currentUser.role === "ADMIN" &&
+                    <button className="btn btn-outline-danger" onClick={() => deleteRecipe()}>delete Recipes</button>}
             </div>
         </div>
     )

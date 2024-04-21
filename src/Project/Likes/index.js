@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import * as likesClient from "../Likes/client.js";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import RecipeCard from "../Recipes/RecipeCard";
 
 function Likes() {
 
@@ -24,18 +25,18 @@ function Likes() {
         <div className="container-fluid">
             <h1>Liked Recipes</h1>
             {currentUser && recipes && (
-                <>
-                    <ul>
-                        {recipes.map((likes) => {
-                            return (
-                                <li key={likes.recipe._id}>
-                                    <Link to={`/recipes/${likes.recipe._id}`}>
-                                        {likes.recipe.title}</Link>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </>
+                <div className=''>
+                    <div className='row row-cols-1 row-cols-md-3 row-cols-xl-4 r g-4'>
+                        {
+                            recipes.length>0 && recipes.map((r, index)=>{
+                                return (
+                                    <div className='col'>
+                                        <RecipeCard recipe={r.recipe} />
+                                    </div>
+                                )})
+                        }
+                    </div>
+                </div>
             )}
         </div>
     )

@@ -4,7 +4,10 @@ export const NUTRIENTS_API = `${BASE_API_URL}/nutrients`
 
 const client = axios.create({
     withCredentials: true,
-    baseURL: NUTRIENTS_API
+    baseURL: NUTRIENTS_API,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 })
 
 export const createNutrient = async (nutrient) => {

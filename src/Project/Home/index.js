@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 function Home() {
 
     const { currentUser } = useSelector((state) => state.userReducer);
+    console.log(currentUser);
 
     return (
         <div className="container-fluid">

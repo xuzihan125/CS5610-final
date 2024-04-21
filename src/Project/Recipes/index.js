@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import RecipeLikers from "./Components/RecipeLikers.js";
 
 function Recipe() {
-
     const [recipe, setRecipe] = useState(null)
 
     const { recipeId } = useParams();

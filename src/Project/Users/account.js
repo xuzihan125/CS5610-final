@@ -15,8 +15,8 @@ function Account() {
     const fetchUser = async () => {
         try {
             const user = await client.account();
-            console.log(user)
-            console.log(typeof user)
+            // console.log(user)
+            // console.log(typeof user)
             setUser(user);
         } catch (err) {
             navigate("/signin");
@@ -118,7 +118,7 @@ function Account() {
                                 checked={user.isVegetarian}
                                 id="userIsVegetarian"
                                 onChange={(e) => {
-                                    setUser({ ...user, isVegetarian: e.target.checked });
+                                    setUser({ ...user, isVegetarian: !user.isVegetarian });
                                 }} />
                             <label className="form-check-label" htmlFor="userIsVegetarian">
                                 Vegetarian
@@ -132,7 +132,7 @@ function Account() {
                                 checked={user.isGlutenIntolerant}
                                 id="userIsGlutenIntolerant"
                                 onChange={(e) => {
-                                    setUser({ ...user, isGlutenIntolerant: e.target.checked });
+                                    setUser({ ...user, isGlutenIntolerant: !user.isGlutenIntolerant});
                                 }}
                             />
                             <label className="form-check-label" htmlFor="userIsGlutenIntolerant">

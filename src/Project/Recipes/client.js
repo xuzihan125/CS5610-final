@@ -4,7 +4,7 @@ import * as nutrientsClient from '../Nutrients/client';
 import * as usersClient from '../Users/client';
 
 
-export const BASE_API = process.env.REACT_APP_BASE_API_URL || "http://localhost:3000";
+export const BASE_API = process.env.REACT_APP_BASE_API_URL || "http://localhost:4000";
 export const SPOONACULAR_SEARCH_API = "https://api.spoonacular.com/recipes/complexSearch";
 export const SPOONACULAR_RECIPE_DETAIL_API = "https://api.spoonacular.com/recipes";
 export const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
@@ -12,23 +12,27 @@ export const SEARCH_RESULT_NUMBER = 1;
 
 // Search recipes from the API and return the list of spoonacularIds
 export const searchRecipesFromAPI = async (searchTerm, isVegetarian, isGlutenFree) => {
-    let link = `${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`;
-    if (isVegetarian) {
-        link += "&diet=vegetarian";
-    }
-    if (isGlutenFree) {
-        link += "&intolerances=gluten";
-    }
-    console.log(link);
-    const response = await axios.get(link);
-    const ids = []
-    if (response) {
-        for (const recipe of response.data.results) {
-            ids.push(recipe.id);
-        }
-    }
-    console.log(ids)
-    return ids;
+    return findAllRecipes();
+    const recipes = findRecipesByTitle(searchTerm);
+    console.log(recipes);
+    return recipes.filter((e)=>e.isVegetarian === isVegetarian && e.isGlutenFree===isGlutenFree);
+    // let link = `${SPOONACULAR_SEARCH_API}?apiKey=${API_KEY}&query=${searchTerm}&number=${SEARCH_RESULT_NUMBER}&instructionsRequired=true`;
+    // if (isVegetarian) {
+    //     link += "&diet=vegetarian";
+    // }
+    // if (isGlutenFree) {
+    //     link += "&intolerances=gluten";
+    // }
+    // // console.log(link);
+    // const response = await axios.get(link);
+    // const ids = []
+    // if (response) {
+    //     for (const recipe of response.data.results) {
+    //         ids.push(recipe.id);
+    //     }
+    // }
+    // console.log(ids)
+    // return ids;
 }
 
 // Grab details of one recipe from the API and return the recipe JSON object

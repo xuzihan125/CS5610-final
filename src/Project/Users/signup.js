@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as client from './client';
+import {setCurrentUser} from "./reducer";
+import {useDispatch} from "react-redux";
 
 function Signup() {
     const [error, setError] = useState("");
@@ -13,15 +15,19 @@ function Signup() {
         email: "",
         isVegetarian: false,
         isGlutenIntolerant: false,
+        isAdmin: false,
         role: "USER"
     });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const signup = async () => {
         try {
             await client.signup(newUser);
             setError("");
             setSuccess("User created successfully.");
+            const user = await client.signin({ username: newUser.username, password: newUser.password });
+            dispatch(setCurrentUser(user));
             navigate("/users/account")
         } catch (error) {
             setError(error.response.data.message);
@@ -123,13 +129,13 @@ function Signup() {
                         checked={newUser.isVegetarian}
                         id="userIsVegetarian"
                         onChange={(e) =>
-                            setNewUser({ ...newUser, isVegetarian: e.target.checked })}
+                            setNewUser({ ...newUser, isVegetarian: !newUser.isVegetarian })}
                     />
                     <label className="form-check-label" htmlFor="userIsVegetarian">
                         Vegetarian
                     </label>
                 </div>
-                <div className="form-check mb-3">
+                <div className="form-check mb-1">
                     <input
                         className="form-check-input"
                         type="checkbox"
@@ -137,11 +143,26 @@ function Signup() {
                         checked={newUser.isGlutenIntolerant}
                         id="userIsGlutenIntolerant"
                         onChange={(e) => {
-                            setNewUser({ ...newUser, v: e.target.checked });
+                            setNewUser({ ...newUser, isGlutenIntolerant: newUser.isGlutenIntolerant });
                         }}
                     />
                     <label className="form-check-label" htmlFor="userIsGlutenIntolerant">
                         Gluten Intolerant
+                    </label>
+                </div>
+                <div className="form-check mb-3">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        // value={newUser.role==="ADMIN"}
+                        checked={newUser.role==="ADMIN"}
+                        id="userIsGlutenIntolerant"
+                        onChange={(e) => {
+                            setNewUser({ ...newUser, role:newUser.role === "ADMIN" ? "USER": "ADMIN" });
+                        }}
+                    />
+                    <label className="form-check-label" htmlFor="userIsGlutenIntolerant">
+                        Admin
                     </label>
                 </div>
                 <button onClick={signup} className="btn btn-primary">

@@ -37,6 +37,14 @@ function NewRecipe() {
     const { currentUser } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
 
+    const handleSetVeg = () => {
+        setIsVegetarian(!isVegetarian);
+    }
+
+    const handleSetGlu = () => {
+        setIsGlutenFree(!isGlutenFree);
+    }
+
     const handleAddUpdateIngredient = () => {
         setErrors([]);
         if (ingredient.ingredient === '' && ingredient.quantity === 0) {
@@ -163,6 +171,7 @@ function NewRecipe() {
             isVegetarian: isVegetarian,
             isGlutenFree: isGlutenFree
         }
+        console.log(recipe);
         const recipeInDB = await recipesClient.createRecipe(recipe);
         // Add recipe-ingredient, recipe-nutrient connections to DBs
         const recipeInDB_id = recipeInDB._id;
@@ -232,7 +241,7 @@ function NewRecipe() {
                             className='form-control'
                             value={image}
                             id='recipeImage'
-                            onChange={(e) => setImage(e.target.value)}
+                            onChange={(e) => setImage(!e.target.value)}
                         />
                     </div>
                     <div className=''>
@@ -241,7 +250,9 @@ function NewRecipe() {
                             className='form-check-input me-2'
                             value={isVegetarian}
                             id='recipeIsVegetarian'
-                            onChange={(e) => setIsVegetarian(e.target.value)}
+                            onChange={(e) => {
+                                handleSetVeg()}
+                            }
                         />
                         <label htmlFor='recipeIsVegetarian' className='form-label'>
                             Vegetarian
@@ -253,7 +264,7 @@ function NewRecipe() {
                             className='form-check-input me-2'
                             value={isGlutenFree}
                             id='recipeIsGlutenFree'
-                            onChange={(e) => setIsGlutenFree(e.target.value)}
+                            onChange={(e) => handleSetGlu()}
                         />
                         <label htmlFor='recipeIsGlutenFree' className='form-label'>
                             Gluten Free
@@ -359,7 +370,7 @@ function NewRecipe() {
                                         placeholder='unit, e.g. g, mg ...'
                                         className='form-control me-2'
                                         value={nutrient.unit}
-                                        onChange={(e) => setNutrient({ ...ingredient, unit: e.target.value })}
+                                        onChange={(e) => setNutrient({ ...nutrient, unit: e.target.value })}
                                     />
                                 </div>
                             </div>
