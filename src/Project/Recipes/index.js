@@ -20,6 +20,7 @@ function Recipe() {
         try {
             const r = await client.findRecipeById(recipeId);
             setRecipe(r);
+            console.log(r);
         } catch (err) {
             console.log("Error in Recipe.js: ")
             console.log(err);
